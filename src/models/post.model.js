@@ -14,13 +14,7 @@ const postSchema = new Schema(
       default: [],
     },
     images: {
-      type: [
-        {
-          url: String,
-          localPath: String,
-        },
-      ],
-      default: [],
+      type: String
     },
     author: {
       type: Schema.Types.ObjectId,
