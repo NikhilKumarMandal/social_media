@@ -1,17 +1,10 @@
 import mongoose, { Schema } from "mongoose";
-import { User } from "../auth/user.models.js";
+import { User } from "../models/user.model.js";
 
 const profileSchema = new Schema(
   {
     coverImage: {
-      type: {
-        url: String,
-        localPath: String,
-      },
-      default: {
-        url: `https://via.placeholder.com/800x450.png`,
-        localPath: "",
-      },
+     type: String
     },
     firstName: {
       type: String,
