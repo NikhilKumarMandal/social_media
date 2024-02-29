@@ -85,6 +85,37 @@ const removePostImage = asyncHandler(async(req,res) => {
 
 })
  const updatePost = asyncHandler(async(req,res) => {
+    const {postId} = req.params
+    const {content,tags} = req.body
+
+    const post = await SocialPost.findOne({
+        _id: new mongoose.Types.ObjectId(postId),
+        author: req.user?._id,
+      });
+    
+      if (!post) {
+        throw new ApiError(404, "Post does not exist");
+      }
+
+      const updatedPost = await SocialPost.findByIdAndUpdate(
+        postId,
+        {
+            $set:{
+                content,
+                tags
+            }
+        },
+        {
+            new: true
+        }
+      )
+
+      
+  return res
+  .status(200)
+  .json(
+    new ApiResponse(200, updatePost, "Post updated successfully"));
+
 
 })
 
